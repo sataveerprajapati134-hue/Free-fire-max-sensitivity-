@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF MAX PRO - Premium Sensitivity + Recoil Generator 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap');
+        
+        :root {
+            --gold: #ffd700;
+            --purple: #c026d3;
+            --cyan: #22d3ee;
+            --green: #4ade80;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg, #0f0529, #1a0b3d, #2a0f5c);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 5px solid var(--gold);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            color: var(--gold);
+            text-shadow: 0 0 20px var(--gold);
+        }
+        
+        .premium-badge {
+            background: linear-gradient(90deg, #ffd700, #ffaa00);
+            color: #000;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: 0 0 25px #ffd700;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        header { text-align: center; padding: 40px 0 30px; }
+        
+        h1 {
+            font-size: 3.1em;
+            background: linear-gradient(90deg, #ffd700, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
+        }
+        
+        .subtitle { font-size: 1.45em; color: var(--cyan); margin-top: 10px; }
+        
+        .main-card {
+            background: rgba(15, 5, 45, 0.96);
+            border: 5px solid var(--gold);
+            border-radius: 22px;
+            padding: 40px;
+            box-shadow: 0 0 70px rgba(255, 215, 0, 0.6);
+            margin-bottom: 40px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .form-group { margin-bottom: 22px; }
+        
+        label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--cyan);
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+        
+        select {
+            width: 100%;
+            padding: 18px;
+            background: #0a0022;
+            border: 4px solid var(--cyan);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.05em;
+            border-radius: 12px;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 24px;
+            background: linear-gradient(90deg, #ffd700, #ff00ff);
+            color: #000;
+            font-size: 1.45em;
+            font-weight: bold;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            margin-top: 30px;
+            text-transform: uppercase;
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.7);
+            transition: all 0.4s;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(255, 0, 255, 0.8);
+        }
+        
+        .result-card {
+            display: none;
+            background: rgba(10, 2, 30, 0.98);
+            border: 5px solid var(--gold);
+            border-radius: 22px;
+            padding: 40px;
+            margin-top: 35px;
+            box-shadow: 0 0 80px rgba(255, 215, 0, 0.7);
+        }
+        
+        .result-title {
+            text-align: center;
+            color: var(--gold);
+            font-size: 1.9em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px var(--gold);
+        }
+        
+        .sensi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+        
+        .sensi-item {
+            background: rgba(255, 255, 255, 0.09);
+            padding: 20px 25px;
+            border-radius: 14px;
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sensi-name { color: #eee; font-size: 1.1em; }
+        .sensi-value { color: var(--gold); font-size: 1.55em; font-weight: bold; }
+        
+        .recoil-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 3px dashed var(--green);
+        }
+        
+        .recoil-title {
+            color: var(--green);
+            text-align: center;
+            font-size: 1.6em;
+            margin-bottom: 25px;
+        }
+        
+        .weapon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        
+        .weapon-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 3px solid #4ade80;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .weapon-name {
+            color: #ffd700;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+        }
+        
+        .recoil-pattern {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #ddd;
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        
+        .copy-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(#22ff88, #00cc66);
+            color: #000;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.35em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 35px;
+        }
+        
+        .tips {
+            background: linear-gradient(rgba(0, 80, 0, 0.75), rgba(0, 50, 0, 0.75));
+            border: 4px solid var(--green);
+            padding: 35px;
+            border-radius: 20px;
+            margin-top: 45px;
+        }
+        
+        .glow-text { animation: glow 1.8s infinite alternate; }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 15px #ffd700; }
+            to { text-shadow: 0 0 40px #ffd700, 0 0 60px #ff00ff; }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: #888;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">FF MAX PRO</div>
+        <div class="premium-badge">PREMIUM + RECOIL 2026</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="glow-text">FREE FIRE MAX</h1>
+            <p class="subtitle">PREMIUM SENSITIVITY + WEAPON RECOIL GUIDE</p>
+            <p style="color:#ffd700; margin-top:12px;">Device Specific • Zero Recoil Optimized • OB53 Meta</p>
+        </header>
+
+        <div class="main-card">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>📱 SELECT YOUR DEVICE</label>
+                    <select id="deviceType">
+                        <option value="low2">2GB RAM - Very Low End</option>
+                        <option value="low">3-4GB RAM - Low End</option>
+                        <option value="mid" selected>4-6GB RAM - Mid Range</option>
+                        <option value="high">8GB RAM - High End</option>
+                        <option value="flagship">12GB+ Flagship / iPhone</option>
+                        <option value="max">Free Fire MAX Official</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>🎮 PLAYSTYLE</label>
+                    <select id="playstyle">
+                        <option value="aggressive">Aggressive Rush - Close Range</option>
+                        <option value="balanced" selected>Balanced - All Range</option>
+                        <option value="precision">Precision - Long Range</option>
+                        <option value="beginner">Beginner - Easy Control</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>🖐 HAND SPEED / GRIP</label>
+                    <select id="handSpeed">
+                        <option value="slow">Slow (2 Fingers)</option>
+                        <option value="medium" selected>Medium (3-4 Fingers)</option>
+                        <option value="fast">Fast Claw (Pro)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="generate-btn" onclick="generateWithRecoil()">
+                🔥 GENERATE SENSITIVITY + RECOIL PATTERNS
+            </button>
+
+            <!-- Result -->
+            <div class="result-card" id="resultCard">
+                <div class="result-title">🌟 YOUR PREMIUM SETTINGS</div>
+                
+                <div class="sensi-grid" id="sensitivityResult"></div>
+                
+                <div class="recoil-section">
+                    <div class="recoil-title">🎯 WEAPON RECOIL PATTERNS & TIPS</div>
+                    <div class="weapon-grid" id="recoilResult"></div>
+                </div>
+                
+                <button class="copy-btn" onclick="copyAllSettings()">
+                    📋 COPY FULL SETTINGS + RECOIL GUIDE
+                </button>
+            </div>
+        </div>
+
+        <div class="tips">
+            <h2 style="color:var(--green); text-align:center; margin-bottom:25px;">HOW TO MASTER RECOIL CONTROL</h2>
+            <ul style="line-height:2; font-size:1.05em;">
+                <li>➤ Pull your finger **down** on the screen while spraying to counter vertical recoil</li>
+                <li>➤ For horizontal drift (AK, MP40), make small left/right corrections</li>
+                <li>➤ Use **burst fire** (3-5 shots) for better accuracy at long range</li>
+                <li>➤ Practice in Training Ground with each weapon for 5-10 minutes daily</li>
+                <li>➤ Lower sensitivity = easier recoil control on low-end devices</li>
+                <li>➤ Higher sensitivity + fast hand = better for aggressive close combat</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        FF MAX PRO • Premium Sensitivity + Recoil Patterns 2026<br>
+        Practice → Improve → Dominate • No Hacks • Pure Skill 🔥
+    </footer>
+
+    <script>
+        const deviceBases = {
+            low2:     { general: 185, reddot: 170, x2: 160, x4: 145, sniper: 100, freelook: 165 },
+            low:      { general: 150, reddot: 140, x2: 130, x4: 115, sniper: 80,  freelook: 135 },
+            mid:      { general: 108, reddot: 102, x2: 92,  x4: 80,  sniper: 60,  freelook: 88 },
+            high:     { general: 95,  reddot: 90,  x2: 82,  x4: 72,  sniper: 52,  freelook: 78 },
+            flagship: { general: 88,  reddot: 82,  x2: 76,  x4: 66,  sniper: 46,  freelook: 70 },
+            max:      { general: 160, reddot: 15,  x2: 15,  x4: 15,  sniper: 15,  freelook: 15 }
+        };
+
+        const recoilPatterns = {
+            "MP40": {
+                name: "MP40 (Close Range SMG)",
+                pattern: "Low vertical recoil • Slight left drift after 10 bullets\nPull down gently + fast horizontal correction\nBest with Red Dot sensitivity"
+            },
+            "AK": {
+                name: "AK (High Damage AR)",
+                pattern: "Strong vertical climb + rightward horizontal spray\nPull down firmly • Burst 4-5 shots for accuracy\nGreat for mid-range"
+            },
+            "M4A1": {
+                name: "M4A1 (Balanced AR)",
+                pattern: "Very low & predictable recoil\nEasy to control with light downward pull\nPerfect for beginners & long range"
+            },
+            "SCAR": {
+                name: "SCAR (Stable AR)",
+                pattern: "Minimal recoil • Almost no horizontal drift\nSteady spray possible • Excellent with 2x/4x scope"
+            },
+            "UMP": {
+                name: "UMP (SMG)",
+                pattern: "Moderate recoil • Good stability\nEasy control even on full auto\nStrong in buildings"
+            }
+        };
+
+        function getRandomInRange(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function clamp(val) {
+            return Math.max(0, Math.min(200, Math.floor(val)));
+        }
+
+        function generateWithRecoil() {
+            const deviceType = document.getElementById('deviceType').value;
+            const playstyle = document.getElementById('playstyle').value;
+            const handSpeed = document.getElementById('handSpeed').value;
+            
+            let base = {...deviceBases[deviceType]};
+            
+            // Playstyle & hand speed adjustments (same as before)
+            if (playstyle === 'aggressive') {
+                base.general += 12; base.reddot += 11; base.x2 += 8; base.x4 -= 6; base.freelook += 15;
+            } else if (playstyle === 'precision') {
+                base.general -= 15; base.reddot -= 10; base.x2 += 12; base.x4 += 15; base.sniper -= 10;
+            } else if (playstyle === 'beginner') {
+                base.general -= 22; base.reddot -= 20; base.x2 -= 18; base.x4 -= 15; base.sniper -= 18; base.freelook -= 25;
+            }
+            
+            if (handSpeed === 'slow') {
+                base.general -= 15; base.reddot -= 12; base.x2 -= 10;
+            } else if (handSpeed === 'fast') {
+                base.general += 18; base.reddot += 15; base.x2 += 13; base.freelook += 18;
+            }
+            
+            const settings = {
+                "General": clamp(base.general + getRandomInRange(-5, 8)),
+                "Red Dot": clamp(base.reddot + getRandomInRange(-6, 9)),
+                "2x Scope": clamp(base.x2 + getRandomInRange(-5, 7)),
+                "4x Scope": clamp(base.x4 + getRandomInRange(-4, 6)),
+                "Sniper Scope": clamp(base.sniper + getRandomInRange(-7, 8)),
+                "Free Look": clamp(base.freelook + getRandomInRange(-6, 9))
+            };
+            
+            // Render sensitivity
+            let sensiHTML = '';
+            for (let [key, value] of Object.entries(settings)) {
+                sensiHTML += `
+                    <div class="sensi-item">
+                        <span class="sensi-name">${key}</span>
+                        <span class="sensi-value">${value}</span>
+                    </div>
+                `;
+            }
+            document.getElementById('sensitivityResult').innerHTML = sensiHTML;
+            
+            // Render recoil patterns
+            let recoilHTML = '';
+            Object.values(recoilPatterns).forEach(weapon => {
+                recoilHTML += `
+                    <div class="weapon-card">
+                        <div class="weapon-name">${weapon.name}</div>
+                        <div class="recoil-pattern">${weapon.pattern}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('recoilResult').innerHTML = recoilHTML;
+            
+            document.getElementById('resultCard').style.display = 'block';
+            window.currentFullSettings = { sensitivity: settings, device: document.getElementById('deviceType').options[document.getElementById('deviceType').selectedIndex].text };
+            
+            document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function copyAllSettings() {
+            if (!window.currentFullSettings) return;
+            
+            let text = "🌟 FF MAX PRO - SENSITIVITY + RECOIL GUIDE 2026 🌟\n";
+            text += `Device: ${window.currentFullSettings.device}\n\n`;
+            
+            text += "=== SENSITIVITY SETTINGS ===\n";
+            for (let [key, value] of Object.entries(window.currentFullSettings.sensitivity)) {
+                text += `${key}: ${value}\n`;
+            }
+            
+            text += "\n=== WEAPON RECOIL TIPS ===\n";
+            Object.values(recoilPatterns).forEach(w => {
+                text += `${w.name}:\n${w.pattern}\n\n`;
+            });
+            
+            text += "\n✅ Paste sensitivity in Settings → Sensitivity\nPractice recoil patterns in Training Ground!\nPull down to control vertical climb • Burst fire for accuracy 💀";
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const original = btn.textContent;
+                btn.textContent = '✅ COPIED FULL GUIDE!';
+                setTimeout(() => btn.textContent = original, 2800);
+            });
+        }
+        
+        // Enter key support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Enter") generateWithRecoil();
+        });
+        
+        console.log("%cFF MAX PRO with Weapon Recoil Patterns Loaded 🔥", "color:#ffd700; font-size:16px;");
+    </script>
+</body>
+  </html>
